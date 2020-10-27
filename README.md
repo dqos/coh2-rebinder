@@ -23,6 +23,7 @@ The executable can be marked as a virus by your anti-virus, but this is a false 
 - T(ank) = Attack vehicles only (requires vehicle)
 - C(ancel) = Cancel current action
 - Q(uit) = Retreat forces
+- E = Throw grenade
 - Z = Reverse move action (requires vehicle)
 - R(einforce) = Reinforce troops
 - F(ix) = Repair using engineers
@@ -41,6 +42,7 @@ If you want to edit the script and customize it to your needs, you will need AHK
 The executable has been compiled using Ahk2Exe v1.1.31.01.
 
 ### Changelog
+- 1.1 (27-10-2020) Added hotkey: E = Throw grenade.
 - 1.0 (04-11-2019) Initial release.
 
 ### License
