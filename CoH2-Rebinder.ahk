@@ -1,10 +1,11 @@
 ; Company of Heroes 2 Rebinder
-; Scripted by Tamerciaga
-; https://github.com/tamerciaga/coh2-rebinder
+; Version 1.2
+; Scripted by Tamer
 
 #IfWinActive, Company Of Heroes 2
 {
 #CommentFlag //
+#SingleInstance
 // Always disable capslock;
 SetCapsLockState, AlwaysOff
 
@@ -21,11 +22,13 @@ NumpadSub::Suspend On
 F1::
 Suspend
 if (A_IsSuspended) {
-	Overlay("disabled")
+	//Overlay("disabled")
+	SoundPlay, %A_WinDir%\Media\Speech Off.wav
 	} else {
-	Overlay("enabled")
+	//Overlay("enabled")
+	SoundPlay, %A_WinDir%\Media\Speech On.wav
 }
-SoundPlay, %A_WinDir%\Media\chimes.wav
+//SoundPlay, %A_WinDir%\Media\chimes.wav
 return
 
 // Some keys to send messages;
@@ -52,11 +55,12 @@ t::h
 }
 
 // Custom code to show a nice overlay in game;
+// Update: This does not work anymore in the x64 version of CoH2;
 Overlay(action)
 {
 	global
 	Gui MyRebinder: New
-	Gui MyRebinder: +LastFound +AlwaysOnTop -Caption +ToolWindow
+	Gui MyRebinder: +LastFound -Caption +ToolWindow +AlwaysOnTop
 	Gui MyRebinder: Font, s24, Arial q4
 	Gui MyRebinder: Color, 000000
 	if (action = "enabled")
