@@ -2,56 +2,81 @@
 ; Version 1.2
 ; Scripted by Tamer
 
-#IfWinActive, Company Of Heroes 2
-{
 #CommentFlag //
 #SingleInstance
-// Always disable capslock;
-SetCapsLockState, AlwaysOff
+IniFile=%A_WorkingDir%\rebinder.ini
 
-// Keys used to suspend the script;
-~Enter::Suspend
-+~Enter::Suspend
-~NumpadEnter::Suspend
-+~NumpadEnter::Suspend
-NumpadSub::Suspend On
-~Esc::Suspend Off
+defaultBinds =
+(
+; This is a file
+[REBINDER]
+F2=Send {Enter}Hey, what is the plan{?}{Enter}
+F3=Send +{Enter}GL HF{!}{Enter}
+w=up
+a=left
+s=down
+d=right
+m=Send {b}{m}
+c=s
+z=u
+f=e
+q=t
+e=d
+t=h
+`=^a
+)
 
-// Togle on/off behaviour;
-\::
-F1::
-Suspend
-if (A_IsSuspended) {
-	//Overlay("disabled")
-	SoundPlay, %A_WinDir%\Media\Speech Off.wav
-	} else {
-	//Overlay("enabled")
-	SoundPlay, %A_WinDir%\Media\Speech On.wav
+loadBinds()
+
+IfNotExist, %IniFile%
+{
+	FileAppend, %defaultBinds%, %IniFile%
+	MsgBox, This is the first time you are using Rebinder, a new rebinder.ini file has been created. Using this file you can customize your hotkeys.
 }
-//SoundPlay, %A_WinDir%\Media\chimes.wav
-return
 
-// Some keys to send messages;
-F2::Send {Enter}Hey, what is the plan{?}{Enter}
-F3::Send +{Enter}GL HF{!}{Enter}
+//#IfWinActive, Company Of Heroes 2
+//{
 
-// Rebind arrow keys to WASD;
-w::up
-a::left
-s::down
-d::right
+	// Always disable capslock;
+	SetCapsLockState, AlwaysOff
 
-// Additional rebinds here;
-//g::g
-//r::r
-m::Send {b}{m}
-c::s
-z::u
-f::e
-q::t
-e::d
-t::h
-`::^a
+	// Keys used to suspend the script;
+	~Enter::Suspend
+	+~Enter::Suspend
+	~NumpadEnter::Suspend
+	+~NumpadEnter::Suspend
+	NumpadSub::Suspend On
+	~Esc::Suspend Off
+
+	// Togle on/off behaviour;
+	\::
+	F1::
+	Suspend
+	if (A_IsSuspended) {
+		//Overlay("disabled")
+		SoundPlay, %A_WinDir%\Media\Speech Off.wav
+		} else {
+		//Overlay("enabled")
+		SoundPlay, %A_WinDir%\Media\Speech On.wav
+	}
+
+	return
+
+	
+
+//}
+
+
+loadBinds()
+{
+	global
+	IniRead, hotkeys, %IniFile%, REBINDER
+	Loop, Parse, hotkeys,`n,`r
+	{
+		StringSplit, key, A_LoopField, =, %A_Space%%A_Tab%
+		Hotkey, %key1%, %key2%
+		//MsgBox, Mapping %key1% to %key2%
+	}
 }
 
 // Custom code to show a nice overlay in game;
@@ -72,7 +97,7 @@ Overlay(action)
 	    Gui MyRebinder: Add, Text, x30 y15 vStatus cRed, REBINDER DISABLED!
 	}
 	Gui MyRebinder: Font, s12 Arial q4 bold
-	Gui MyRebinder: Add, Text, x30 y50 vCredits cAqua, SCRIPTED BY TAMERCIAGA
+	Gui MyRebinder: Add, Text, x30 y50 vCredits cAqua, SCRIPTED BY TAMER
 	WinSet, TransColor, 000000 255
 	Gui MyRebinder: Show, x0 y400 NoActivate, MyRebinder
 	// Some fancy code to show the GUI async, because it does not work with sleep;
