@@ -42,6 +42,7 @@ If you want to edit the script and customize it to your needs, you will need AHK
 The executable has been compiled using Ahk2Exe v1.1.31.01.
 
 ### Changelog
+- 1.2 (22-01-2021) Added compatibility with x64 version, Overlay removed due to issues, new on/off sounds added. Some other minor fixes.
 - 1.1 (27-10-2020) Added hotkey: E = Throw grenade.
 - 1.0 (04-11-2019) Initial release.
 

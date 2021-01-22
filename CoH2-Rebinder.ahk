@@ -2,56 +2,56 @@
 ; Version 1.2
 ; Scripted by Tamer
 
-#IfWinActive, Company Of Heroes 2
-{
 #CommentFlag //
 #SingleInstance
-// Always disable capslock;
-SetCapsLockState, AlwaysOff
 
-// Keys used to suspend the script;
-~Enter::Suspend
-+~Enter::Suspend
-~NumpadEnter::Suspend
-+~NumpadEnter::Suspend
-NumpadSub::Suspend On
-~Esc::Suspend Off
+#IfWinActive, Company Of Heroes 2
+{
+	// Always disable capslock;
+	SetCapsLockState, AlwaysOff
 
-// Togle on/off behaviour;
-\::
-F1::
-Suspend
-if (A_IsSuspended) {
-	//Overlay("disabled")
-	SoundPlay, %A_WinDir%\Media\Speech Off.wav
-	} else {
-	//Overlay("enabled")
-	SoundPlay, %A_WinDir%\Media\Speech On.wav
-}
-//SoundPlay, %A_WinDir%\Media\chimes.wav
-return
+	// Keys used to suspend the script;
+	~Enter::Suspend
+	+~Enter::Suspend
+	~NumpadEnter::Suspend
+	+~NumpadEnter::Suspend
+	NumpadSub::Suspend On
+	~Esc::Suspend Off
 
-// Some keys to send messages;
-F2::Send {Enter}Hey, what is the plan{?}{Enter}
-F3::Send +{Enter}GL HF{!}{Enter}
+	// Togle on/off behaviour;
+	\::
+	F1::
+	Suspend
+	if (A_IsSuspended) {
+		//Overlay("disabled")
+		SoundPlay, %A_WinDir%\Media\Speech Off.wav
+		} else {
+		//Overlay("enabled")
+		SoundPlay, %A_WinDir%\Media\Speech On.wav
+	}
+	return
 
-// Rebind arrow keys to WASD;
-w::up
-a::left
-s::down
-d::right
+	// Some keys to send messages;
+	F2::Send {Enter}Hey, what is the plan{?}{Enter}
+	F3::Send +{Enter}GL HF{!}{Enter}
 
-// Additional rebinds here;
-//g::g
-//r::r
-m::Send {b}{m}
-c::s
-z::u
-f::e
-q::t
-e::d
-t::h
-`::^a
+	// Rebind arrow keys to WASD;
+	w::up
+	a::left
+	s::down
+	d::right
+
+	// Additional rebinds here;
+	//g::g
+	//r::r
+	m::Send {b}{m}
+	c::s
+	z::u
+	f::e
+	q::t
+	e::d
+	t::h
+	`::^a
 }
 
 // Custom code to show a nice overlay in game;
